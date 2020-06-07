@@ -1,7 +1,9 @@
 <template>
   <div class="main-page-layout">
      <div class="main-page-header-layout">
-        <p class="title-layout">欢迎来到刘花花的组件库</p>
+         <transition name="xxx">
+           <p v-show="isShow">hello</p>
+         </transition>
      </div>
      <div class="main-page-body-layout">
         <left-nav class="body-left"></left-nav>
@@ -16,6 +18,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+   $menuBackColor:#ffffff;
+   $menuListH2:#8fbfef;
+   $fontColor: #ffffff;
    .main-page-layout {
       width: 100%;
       height: 100%;
@@ -23,7 +28,8 @@ export default {
       .main-page-header-layout {
         width: 100%;
         height: 60px;
-        border-bottom: 1px solid #969696;
+        box-shadow: 1px 1px 5px  $menuListH2;
+        background: $menuBackColor;
         .title-layout {
           text-align: left;
           font-size: 20px;
@@ -39,7 +45,6 @@ export default {
             height: 100%;
             text-align: left;
             background: #ffffff;
-            border-right: 1px solid #969696;
             overflow: auto;
           }
           .body-right {
