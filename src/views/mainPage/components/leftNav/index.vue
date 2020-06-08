@@ -25,7 +25,7 @@ export default {
       show: false,
       menuList: [
         {name: '表格组件',
-        imgUrl: require('../../assets/images/menu1.png'),
+        imgUrl: require('../../../../assets/images/menu1.png'),
         isSubShow: false,
         subItems: [
          {name: '封装表格1'},
@@ -34,7 +34,7 @@ export default {
         ]
         },
        {name: '搜索组件',
-        imgUrl: require('../../assets/images/menu1.png'),
+        imgUrl: require('../../../../assets/images/menu1.png'),
         isSubShow: false,
         subItems: [
          {name: '搜索组件1'},
@@ -42,28 +42,28 @@ export default {
         ]
        },
        {name: '表单组件',
-        imgUrl: require('../../assets/images/menu1.png'),
+        imgUrl: require('../../../../assets/images/menu1.png'),
         isSubShow: false,
         subItems: [
          {name: '自动配置表单'}
         ]
        },
        {name: '国际化',
-        imgUrl: require('../../assets/images/menu1.png'),
+        imgUrl: require('../../../../assets/images/menu1.png'),
         isSubShow: false,
         subItems: [
          {name: '中英双翻译'}
         ]
        },
        {name: '数据可视化',
-        imgUrl: require('../../assets/images/menu1.png'),
+        imgUrl: require('../../../../assets/images/menu1.png'),
         isSubShow: false,
         subItems: [
          {name: '表格'}
         ]
        },
        {name: '地图',
-        imgUrl: require('../../assets/images/menu1.png'),
+        imgUrl: require('../../../../assets/images/menu1.png'),
         isSubShow: false,
         subItems: [
          {name: '尝试地图'}
@@ -93,13 +93,14 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  $menuBackColor:#3191ed;
-  $menuListH2:#8fbfef;
-  $subMenuColor: #ffffff;
-  $subMenuDefaultFontColor: #8fbfef;
-  $fontColor: #ffffff;
+  // $menuBackColor:#3191ed;
+  // $menuListH2:#8fbfef;
+  // $subMenuColor: #ffffff;
+  // $subMenuDefaultFontColor: #8fbfef;
+  // $fontColor: #ffffff;
    .left-nav-layout {
      width: 200px;
+     float: left;
     aside{
       background: $menuBackColor;
       height: 100%;

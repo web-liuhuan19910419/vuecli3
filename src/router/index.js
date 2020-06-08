@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import MainPage from '../views/mainPage'
+// import MainPage from '../views/mainPage' // 基本布局
 
 Vue.use(VueRouter)
 
@@ -19,12 +19,35 @@ Vue.use(VueRouter)
 
 const router = new VueRouter({
     mode: 'history',
-    routes: [{
+    routes: [
+        {
+            path: '/login',
+            component: () => import('@/views/login/index'),
+            hidden: true,
+            name: 'login',
+            meta: {requiresAuth: false}
+        },
+        {
+            path: '/404',
+            component: () => import('@/views/404'),
+            hidden: true,
+            meta: {requiresAuth: false}
+        },
+        {
             path: '/',
-            name: 'mainPage',
-            component: MainPage
-            // children: pages
+            redirect: '/home',
+            component: () => import('@/views/homePage/index'),
+            meta: {requiresAuth: false}
+        },
+        {
+            path: '/home',
+            component: () => import('@/views/homePage/index'),
+            meta: {requiresAuth: false}
         }
     ]
 })
+
+
+
+
 export default router

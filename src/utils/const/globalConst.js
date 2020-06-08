@@ -28,7 +28,10 @@ const globalConst = {
       return this.clientHeight() - this.headComponentHeight - this.footComponentHeight - 10 - 1
     },
     getShowMenuHeight () {
-      return this.clientHeight() - this.headComponentHeight - this.footComponentHeight - 1
+      return this.clientHeight() - this.headComponentHeight
+    },
+    getMainAppHeight () {
+      return this.clientHeight() - this.headComponentHeight  - 10
     }
   }
   
