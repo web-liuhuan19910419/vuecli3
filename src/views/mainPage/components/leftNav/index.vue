@@ -8,7 +8,7 @@
               <span>{{item.name}}</span>
             </div>
             <ul v-show="item.isSubShow === true">
-              <li v-for="(subItem) in item.subItems" :key="subItem.name">
+              <li v-for="(subItem, i) in item.subItems" :key="subItem.name" @click="clickSubMenu(subItem,i)">
                 <div class="oneMenuChild">{{subItem.name}}</div>
               </li>
             </ul>
@@ -28,8 +28,8 @@ export default {
         imgUrl: require('../../../../assets/images/menu1.png'),
         isSubShow: false,
         subItems: [
-         {name: '封装表格1'},
-         {name: '封装表格2'},
+         {name: '封装表格1', pathName: 'table1'},
+         {name: '封装表格2', pathName: 'table2'},
          {name: 'element表格'}
         ]
         },
@@ -85,7 +85,11 @@ export default {
         item.isSubShow = !item.isSubShow
         console.log(this.menuList)
         console.log(item.isSubShow)
-      }
+    },
+    clickSubMenu(subItem,i) {
+      console.log(subItem,i)
+      this.$router.push({name: subItem.pathName})
+    }
   },
   beforeMount () {
     this.menuMinHeight = `${this.$globalConst.getShowMenuHeight()}px`

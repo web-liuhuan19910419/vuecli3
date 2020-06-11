@@ -7,6 +7,7 @@
   export default {
     name: 'Table1',
     data () {
+      return {}
     }
   }
 </script>

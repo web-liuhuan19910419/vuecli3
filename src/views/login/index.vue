@@ -107,11 +107,13 @@ export default {
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
+          console.log('进来这里')
           this.loading = true
           setTimeout (() => {
           this.loading = false
-          this.$router.push()
-          localStorage.setItem('UserToken', true)}, 2000) 
+          this.$router.push({name: 'home'})
+          localStorage.setItem('UserToken', true)
+          }, 2000) 
           /* this.$store.dispatch('user/login', this.loginForm).then(() => {
             this.$router.push({ path: this.redirect || '/' })
             this.loading = false
