@@ -16,8 +16,8 @@ Vue.prototype.$echarts = echarts
 router.beforeEach((to, from, next) => { // 路由拦截，未登陆或者权限配置
     console.log(store.state.UserToken)
     console.log(to.matched)
-    console.log(localStorage.getItem('UserToken'))
-    if (localStorage.getItem('UserToken') === null) { // 用户没有登录
+    console.log(sessionStorage.getItem('UserToken'))
+    if (sessionStorage.getItem('UserToken') === null) { // 用户没有登录
         if (to.path === '/login') {
             console.log('1111111')
             next();

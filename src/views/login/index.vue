@@ -112,7 +112,7 @@ export default {
           setTimeout (() => {
           this.loading = false
           this.$router.push({name: 'home'})
-          localStorage.setItem('UserToken', true)
+          sessionStorage.setItem('UserToken', true)
           }, 2000) 
           /* this.$store.dispatch('user/login', this.loginForm).then(() => {
             this.$router.push({ path: this.redirect || '/' })

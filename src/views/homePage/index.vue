@@ -1,24 +1,45 @@
 <template>
   <div class="content-layout">
     <div style="margin-top: 10px; font-size: 20px; font-weight: 500;">欢迎来到我组件库首页</div>
-    <div style="display: flex; justify-content: space-around; margin-top: 100px;" >
-      <div class="charts">
-        <div id="mycharts1" :style="{width: '400px', height: '400px'}"></div>
-      </div>
-      <div class="charts">
-        <div id="mycharts2" :style="{width: '500px', height: '400px'}"></div>
-      </div>
-       <div class="charts">
-        <div id="mycharts3" :style="{width: '500px', height: '400px'}"></div>
-      </div>
+    <div class="seven-profit-layout" >
+      <line-chart-component
+        title= '近7天收益'
+        :profit= profitResponseData>
+      </line-chart-component>
     </div>
   </div>
 </template>
 <script>
+  import LineChartComponent from '@/components/LineChartComponent'
   export default {
     name: 'HomePage',
+    components: {LineChartComponent},
     data () {
       return {
+        profitResponseData: [
+          { day: "20200608",
+            money_count: "80"},
+          {
+            day: "20200609",
+            money_count: "60"
+          },
+          {
+            day: "20200610",
+            money_count: "70"
+          },
+          {
+            day: "20200611",
+            money_count: "80"
+          },
+          {
+            day: "20200612",
+            money_count: "90"
+          },
+           {
+            day: "20200701",
+            money_count: "60"
+          }
+        ],
         options1: {
           title: {
             text: '柱状图',
@@ -183,15 +204,12 @@
       }
     },
     mounted () {
-      let mycharts1 = this.$echarts.init(document.getElementById('mycharts1'))
-      mycharts1.setOption(this.options1)
-      let mycharts2 = this.$echarts.init(document.getElementById('mycharts2'))
-      mycharts2.setOption(this.options2)
-      let mycharts3 = this.$echarts.init(document.getElementById('mycharts3'))
-      mycharts3.setOption(this.options3)
     }
   }
 </script>
 <style lang="scss">
-
+  .seven-profit-layout {
+    margin-left: 30px;
+    margin-top: 50px;
+  }
 </style>
