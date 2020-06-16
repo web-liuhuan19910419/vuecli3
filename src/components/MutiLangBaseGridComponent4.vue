@@ -38,7 +38,7 @@
             <button v-for="(action, index) in actions[rowIndex]" :key=action.name
               @click.stop="onActions(index,rowIndex)"
               size="small"
-              style="border: none;color: #215cb1; cursor: pointer;background-color: transparent;width: 70px;font-size: 14px; outline:none;">{{$t(action.name)}}
+              style="border: none;color: #215cb1; cursor: pointer;background-color: transparent;width: 70px;font-size: 14px; outline:none;">{{action.name}}
             </button>
           </td>
         </tr>
@@ -62,7 +62,10 @@ export default {
     // 数据接口
     data: Array,
     // 是否支持多选接口
-    isSupportMutiChoice: false,
+    isSupportMutiChoice: {
+      type: Boolean,
+      default: false
+    },
     // 支持的操作
     actions: Array,
     // 变色List
@@ -98,16 +101,16 @@ export default {
     processTitle (index) {
       let key = ''
       if (this.arrows === undefined) {
-        key = this.$t(this.titles[index])
+        key = this.titles[index]
       } else {
         if (this.arrows[index].arrow === 0) {
-          key = this.$t(this.titles[index])
+          key = this.titles[index]
         } else if (this.arrows[index].arrow === 1) {
-          key = this.$t(this.titles[index]) + '▶'
+          key = this.titles[index] + '▶'
         } else if (this.arrows[index].arrow === 2) {
-          key = this.$t(this.titles[index]) + '▼'
+          key = this.titles[index] + '▼'
         } else if (this.arrows[index].arrow === 3) {
-          key = this.$t(this.titles[index]) + '▲'
+          key = this.titles[index] + '▲'
         }
       }
       return key
@@ -118,7 +121,6 @@ export default {
     processActionWidth () {
       return this.titleWidths[this.titleWidths - 1]
     },
-
     onSwitchSort (index) {
       if ((this.arrows === undefined) || this.arrows[index].arrow === 0) {
         return
@@ -157,6 +159,8 @@ export default {
       }
     },
     mutiChoiceItem (rowIndex) {
+      console.log(rowIndex)
+      console.log(this.mutiChoiceArr[rowIndex])
       if (this.isSupportMutiChoice === false) {
         return
       }
@@ -289,7 +293,7 @@ export default {
         index = -1
       } else {
         for (let i = 0; i < this.jumpColorList.length; i++) {
-          if (this.$t(this.jumpColorList[i].title).toUpperCase() === currentContent.toUpperCase()) {
+          if ((this.jumpColorList[i].title).toUpperCase() === currentContent.toUpperCase()) {
             index = i
             break
           }
@@ -321,11 +325,11 @@ export default {
       console.log('执行了第一个')
       this.initMutiChoiceArr()
     }, */
-    'colorListProp' (to, from) {
+    'colorListProp' () {
       this.colorList = this.colorListProp
     },
     '$store.state.dirArrModule.mutiCheckedArray': {
-      handler (to, from) {
+      handler (to) {
         console.log('shujubianhual')
         console.log(to)
         this.initMutiChoiceArr() // 重新配置表格里面的选中与未选中状态

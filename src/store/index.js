@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import dirArrModule from './modules/dirArrModule.js'
 Vue.use(Vuex)
 const state = {
     get UserToken() {
@@ -56,6 +57,7 @@ const state = {
     getters,
     actions,
     modules: { // 一些外挂的module
+      dirArrModule
     },
     plugins: [] // 外挂的plugin
   })

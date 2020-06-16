@@ -13,6 +13,7 @@ Vue.prototype.$globalConst = globalConst
 Vue.prototype.$menuList = menuList
 Vue.use(ElementUI, {size: 'mini', zIndex: 9000})
 Vue.prototype.$echarts = echarts
+Vue.prototype.$store = store
 router.beforeEach((to, from, next) => { // 路由拦截，未登陆或者权限配置
     console.log(store.state.UserToken)
     console.log(to.matched)
