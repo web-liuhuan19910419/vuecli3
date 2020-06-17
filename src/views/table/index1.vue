@@ -10,13 +10,20 @@
         @on-index-change="onCheckIndexChange"
         @on-table-actions="onTableActions">
       </muti-lang-base-grid-component4>
+      <auto-from-create-dialog id="autoFromCreateDialogRef" ref="autoFromCreateDialogRef" :title-prop="this.getDialogTitle()" :visible-prop.sync="this.comfirmDialogFlag" v-if="this.comfirmDialogFlag"
+        :mack-data-prop="this.sureMockData"
+        @on-button-close="closeReturnAction" 
+        @on-button-search="searchAction">
+      </auto-from-create-dialog>
   </div>
 </template>
 <script>
 import mutiLangBaseGridComponent4 from '@/components/MutiLangBaseGridComponent4'
+import AutoFromCreateDialog from './AutoFromCreateDialog'
+import MockData from './mock/tableAddMock.js'
 import {mapMutations} from 'vuex'
   export default {
-    components: {mutiLangBaseGridComponent4},
+    components: {mutiLangBaseGridComponent4, AutoFromCreateDialog},
     name: 'Table1',
     data () {
       return {
@@ -36,10 +43,27 @@ import {mapMutations} from 'vuex'
         '10%',
         '30%'],
         actions: [],
-        testData: [{id: 0, name: 'lh'}, {id: 1, name: 'll'},{id: 2, name: 'hh'}]
+        testData: [{id: 0, name: 'lh'}, {id: 1, name: 'll'},{id: 2, name: 'hh'}],
+        sureMockData: [],
+        comfirmDialogFlag: false,
+        dialogCType: 1
       }
     },
     methods: {
+      getDialogTitle () {
+        if (this.dialogCType === 1) {
+          return '增加'
+        } else if (this.dialogCType === 0) {
+          return '删除'
+        } else if (this.dialogCType === 3) {
+          return '修改'
+        } else if (this.dialogCType === 2) {
+          return '入库'
+        } else {
+          return '出库'
+        }
+      },
+      closeReturnAction (data) {console.log(data)},
       processData2 () {
         let gridData = []
         for (let item of this.responseData) {
@@ -54,6 +78,9 @@ import {mapMutations} from 'vuex'
         }
         return gridData
       },
+      searchAction (data) {
+        console.log(data)
+      },
       onCheckIndexChange (rowIndex, itemStatus) {
         console.log(rowIndex, itemStatus)
         this.$store.state.dirArrModule.mutiCheckedArray[rowIndex].checked = itemStatus
@@ -61,6 +88,8 @@ import {mapMutations} from 'vuex'
       },
       onTableActions (index, rowIndex) {
         console.log(index, rowIndex)
+         this.sureMockData = MockData.mockData([{name: 'lh', age: '29'},{name: 'll', age: '40'}])
+         this.comfirmDialogFlag = !this.comfirmDialogFlag
       },
        ...mapMutations('dirArrModule', {
       'configMutiCheckedArray': 'configMutiCheckedArray'}
