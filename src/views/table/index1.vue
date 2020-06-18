@@ -63,7 +63,10 @@ import {mapMutations} from 'vuex'
           return '出库'
         }
       },
-      closeReturnAction (data) {console.log(data)},
+      closeReturnAction (data) {
+        console.log(data)
+        this.comfirmDialogFlag = !this.comfirmDialogFlag
+      },
       processData2 () {
         let gridData = []
         for (let item of this.responseData) {
@@ -88,8 +91,9 @@ import {mapMutations} from 'vuex'
       },
       onTableActions (index, rowIndex) {
         console.log(index, rowIndex)
-         this.sureMockData = MockData.mockData([{name: 'lh', age: '29'},{name: 'll', age: '40'}])
-         this.comfirmDialogFlag = !this.comfirmDialogFlag
+        this.sureMockData = MockData.mockData(this.responseData[rowIndex], 1)
+        this.comfirmDialogFlag = !this.comfirmDialogFlag
+        this.$nextTick(() => {console.log(this.$refs.autoFromCreateDialogRef)})
       },
        ...mapMutations('dirArrModule', {
       'configMutiCheckedArray': 'configMutiCheckedArray'}

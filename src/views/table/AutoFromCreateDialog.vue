@@ -1,15 +1,17 @@
 <template>
   <div style="text-align: left;">
-    <el-dialog :title="this.$t(titleProp)" :visible.sync="visibleProp" v-if="visibleProp" :close-on-click-modal="false" :before-close="closeDialog" :width="this.getWindwoWidth()" top="15vh">
+    <el-dialog :title="titleProp" :visible.sync="visibleProp" v-if="visibleProp" :close-on-click-modal="false" :before-close="closeDialog" :width="this.getWindwoWidth()" top="15vh">
       <div class="mini-dialog-content dialog-content-bottom">
-        <form-create v-model="fApi"
-                     :rule="rule"
-                     :option="option"
-                     @searchs-click="searchChange"
-                     @mounted="fcMounted"></form-create>
+        <form-create 
+          v-model="fApi"
+          :rule="rule"
+          :option="option"
+          @searchs-click="searchChange"
+          @mounted="fcMounted">
+        </form-create>
       </div>
       <span slot="footer" class="dialog-footer">
-        <el-button type="primary" :loading="this.loading" @click="onConfirm(true)">{{this.$t('message.okBtn')}}</el-button>
+        <el-button type="primary" :loading="this.loading" @click="onConfirm(true)">{{'确认'}}</el-button>
       </span>
     </el-dialog>
   </div>
@@ -77,6 +79,10 @@
       },
       onConfirm (flag) {
         this.loading = true
+        console.log(this.fApi.fields())
+        console.log(this.fApi.formData())
+        this.fApi.setValue('name','liuhuan')
+        console.log(this.fApi.formData())
         this.fApi.validate((valid) => {
           console.log('valid =' + valid)
           if (valid) {
