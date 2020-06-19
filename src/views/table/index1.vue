@@ -95,11 +95,38 @@ import {mapMutations} from 'vuex'
         this.comfirmDialogFlag = !this.comfirmDialogFlag
         this.$nextTick(() => {console.log(this.$refs.autoFromCreateDialogRef)})
       },
+      total (arr) { // 数列求和
+        let sum = arr.reduce((prev, cur) => {
+        return prev + cur
+        }, 0)
+        return sum
+      },
+      getMyArray(nums) {
+        nums.sort((a,b) => {
+         return b - a
+        })
+        let myNums = JSON.parse(JSON.stringify(nums)) // 先深度拷贝一个数组
+        let i = 1
+        while (i < nums.length) { // 一次截取前面比较大的数字并且求和
+          let nums1 = myNums.slice(0, i) // 截取前面大的数组
+          console.log(nums1)
+          let nums2 = myNums.slice(i) // 剩余的数组
+
+          if (this.total(nums1) > this.total(nums2)) {
+            return nums1
+          } else {
+            i++ // 继续截取数组
+          }
+        }
+      },
        ...mapMutations('dirArrModule', {
       'configMutiCheckedArray': 'configMutiCheckedArray'}
     )
     },
     created () {
+      console.log(this.total([6]))
+      this.getMyArray([6])
+      console.log(this.getMyArray([6]))
       for (let i = 0; i < this.responseData.length; i++) {
         if (i === 2) {
           this.responseData[i].checked = '2'

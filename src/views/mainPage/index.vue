@@ -46,17 +46,19 @@ export default {
     data () {
       return {
         logoShow: false,
-        quickTabList: [{name: '首页'}, {name: '页面1'}, {name: '页面2'}, {name:'页面3'}, {name: '页面4'}, {name: '页面5'}, {name: '页面6'}, {name: '页面7'}], // 快速栏导航的所有数据
+        quickTabList: [{name: '首页', pathName: 'home'}, {name: '页面1'}, {name: '页面2'}, {name:'页面3'}, {name: '页面4'}, {name: '页面5'}, {name: '页面6'}, {name: '页面7'}], // 快速栏导航的所有数据
         defaultActiveIndex: -1,
         userName: 'users'
       }
     },
     methods:{
       loginOut () {
-
+        sessionStorage.setItem('UserToken', false)
+        this.$router.push({name: 'login'})
       },
       clickCurrentIndex (index) { // 点击横向导航
         console.log(index)
+        this.$router.push({name: this.quickTabList[index].pathName})
       }
     },
     created () {
